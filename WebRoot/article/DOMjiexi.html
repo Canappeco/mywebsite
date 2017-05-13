@@ -1,0 +1,275 @@
+
+<h1>DOM:Document Object Model (文档对象模型)</h1>
+<blockquote>
+<p>用来将标记型文档封装成对象，并将标记型文档中的所有内容（标签，文本，属性等）都封装成对象。封装成对象的目的是为了更为方便的操作这些文档以及文档中的所有内容。</p>
+</blockquote>
+<h3>文档对象模型：</h3>
+<ul>
+<li>文档：标记型文档。</li>
+<li>对象：封装了属性和行为的实例，可以被直接调用。</li>
+<li>模型：所有标记型文档都具备一些共性特征的一个体现。标记型文档（标签，属性，标签中封装的数据）。</li>
+</ul>
+<p>只要是标记型文档，DOM这种技术都可以对其进行操作。</p>
+<ul>
+<li>常见的标记型文档：<code>html</code>，<code>xml</code></li>
+</ul>
+<p>DOM技术的解析方式：将标记型文档解析成一棵DOM树，并将树中的内容都封装成节点对象。</p>
+<p>优点：可以对树中的节点进行任意操作，增删改查。</p>
+<p>缺点：这种解析需要将整个标记型文档加载进内存。消耗内存较多。</p>
+<h5>另一种解析方式：SAX （非w3c标准）</h5>
+<blockquote>
+<p>SAX解析的方式：基于事件驱动的解析。获取数据的速度很快，但是不能对标记进行增删改。</p>
+</blockquote>
+<h5>DOM三级模型：</h5>
+<p>DOM模型有三种：</p>
+<ul>
+<li>DOM level 1：将html文档封装成对象。</li>
+<li>DOM level 2：在level 1基础上加入了新功能，比如解析名称空间。</li>
+<li>
+<p>DOM level 3：将xml文档封装成了对象。</p>
+<pre><code>&lt;html xmlns = &quot;my&quot;&gt;
+&lt;table&gt;&lt;/table&gt;
+&lt;/html&gt;
+
+&lt;html xmlns = &quot;http://www.sina.com&quot;&gt;
+&lt;table&gt;&lt;/table&gt;
+&lt;/html&gt;
+</code></pre>
+
+</li>
+</ul>
+<blockquote>
+<p>解析空间名称必须是唯一的，所以经常用域名来作为解析空间的名称。</p>
+</blockquote>
+<h5>DHTML：动态的HTML（不是语言，是多项技术综合体的简称）</h5>
+<blockquote>
+<p>包含了<strong>HTML, CSS, DOM, JAVASCRIPT</strong>.</p>
+<p>这四个技术在动态html页面效果定义时都负责怎样的职责呢？</p>
+</blockquote>
+<ul>
+<li><code>HTML</code>：负责提供标签，对数据进行封装，目的是便于对该标签中的数据进行操作。<em>用标签封装数据。</em></li>
+<li><code>CSS</code>：负责提供样式属性，对标签中的数据进行样式的定义。<em>对数据进行样式定义。</em></li>
+<li><code>DOM</code>：负责将标签型文档以及文档中的所有内容进行解析，并封装成对象，在对象中定义了更多的属性和行为，便于对对象操作。<em>将文档和标签以及其他内容变成对象。</em></li>
+<li><code>JS</code>：负责提供程序设计语言，对页面中的对象进行逻辑操作。<em>负责页面的行为定义，就是动态效果。</em></li>
+</ul>
+<h3>BOM：Browser Object Model 浏览器对象模型</h3>
+<blockquote>
+<p>便于操作浏览器。</p>
+<p>浏览器对应的对象就是<code>window</code>对象。可以通过查阅DHTML的API获得。</p>
+</blockquote>
+<pre><code>&lt;!--定义一个时间源，通过对事件源的出发，获取想要的结果。
+比如让用户通过点击按钮就可以知道浏览器的一些信息。--&gt;
+
+&lt;!--定义按钮onclick事件的处理方式。--&gt;
+&lt;script type = &quot;text/javascript&quot;&gt;
+    function windowObjDemo(){
+        //想要得到浏览器的信息，就需要使用window对象中的navigator。
+        var name = window.navigator.appName;
+        var version = window.navigator.appVersion;
+        document.write(name+&quot;-----&quot;+version);
+    }
+&lt;/script&gt;
+
+&lt;!--定义事件源，注册时间关联的动作--&gt;
+&lt;input type = &quot;button&quot; value = &quot;演示window中的对象&quot; onclick = &quot;windowObjDemo()&quot; /&gt;
+</code></pre>
+
+<blockquote>
+<p>可以通过<code>history</code>对象获取浏览器的历史纪录。</p>
+<p><code>location</code>对象可以获取地址栏的内容。</p>
+</blockquote>
+<pre><code>&lt;!--演示location对象--&gt;
+&lt;script type = &quot;text/javascript&quot;&gt;
+    function windowObjDemo2(){
+        var prop = location.protocol;   //获取协议名称。
+        var text = location.href;   //获取url。
+
+        //给location的href属性设置一个值。改变了地址栏的值，并对其值进行了解析。
+        //如果是http，还进行连接访问。
+        location.href = &quot;http://www.sina.com&quot;;
+    }
+&lt;/script&gt;
+
+&lt;!--定义事件源，注册时间关联的动作--&gt;
+&lt;input type = &quot;button&quot; value = &quot;演示window中的对象&quot; onclick = &quot;windowObjDemo2()&quot; /&gt;
+</code></pre>
+
+<blockquote>
+<p>window对象的方法：</p>
+</blockquote>
+<pre><code>&lt;!--演示window中的常见方法--&gt;
+&lt;script type = &quot;text/javascript&quot; &gt;
+    function windowMethodDemo1(){
+        var b = window.confirm(&quot;are you sure?&quot;);    //弹出窗口。
+        alert(&quot;b=&quot;+b);
+    }
+
+    var timeid;
+    function windowMethodDemo2(){
+        setTimeout(&quot;alert('time out run')&quot;, 4000);  //过去4000毫秒后执行。
+        timeid = setInterval(&quot;alert('interval run')&quot;, 3000);    //每隔3000毫秒执行。并得到对应的id。
+    }
+
+    function stopTime(){
+        clearInterval(timeid);  //清除id。
+    }
+
+    function windowMove(){
+        moveBy(10,10);  //在原有窗口位置上移动相应距离。
+        moveTo(100,100);    //窗口移动到指定位置。
+    }
+
+    function windowOpen(){
+        open(&quot;&quot;,&quot;_blank&quot;,&quot;height=200,width=400,status=yes,toolbar=yes,menubar=yes,location=yes&quot;);
+            //弹出一个新窗口，包含菜单栏工具栏等。第一个参数为弹出内容的html文档。
+    }
+&lt;/script&gt;
+</code></pre>
+
+<h3>document获取节点：</h3>
+<blockquote>
+<p><strong>重点是三个获取节点的方法。</strong></p>
+</blockquote>
+<pre><code>&lt;script type = &quot;text/javascript&quot;&gt;
+    function getNodeDemo1(){
+        //用id属性获取节点。
+        var divnode = document.getElementById(&quot;divid&quot;);
+        //节点都有三个必备的属性：节点名称，节点类型，节点值。
+        alert(divnode.nodeName+&quot;:&quot;+divnode.nodeType+&quot;:&quot;+divnode.nodeValue);
+
+        //获取div节点中的文本。
+        var text = divnode.innerHTML;
+        alert(text);
+
+        //改变div中的文本。
+        divnode.innerHTML = &quot;change&quot;;
+    }
+
+    function getNodeDemo2(){
+        //用name属性获取节点。
+        var nodes = document.getElementsByName(&quot;user&quot;); //该方法返回一个数组。
+        alert(nodes[0].type);
+    }
+
+    function getNodeDemo3(){
+        //用标签名获取节点。
+        var nodes = document.getElementsByTagName(&quot;a&quot;);
+        for(var x = 0; x &lt; nodes.length; x++){
+            alert(nodes[x].innerHTML);
+        }
+    }
+
+    function getNodeDemo4(){
+        var divnode = document.getElementById(&quot;newslink&quot;);
+        var aNodes = divnode.getElementsByTagName(&quot;a&quot;);
+        for(var x = 0; x &lt; aNodes.length; x++)
+            aNodes[x].target = &quot;_blank&quot;;
+    }
+
+&lt;/script&gt;
+
+&lt;input type = &quot;button&quot; value = &quot;show&quot; onclick = &quot;getNodeDemo4()&quot; /&gt;
+
+&lt;div id = &quot;divid&quot;&gt;This is a div area&lt;/div&gt;
+&lt;input type = &quot;text&quot; name = &quot;user&quot;/&gt;
+&lt;a href = &quot;http://www.sina.com.cn&quot;&gt;新浪1&lt;/a&gt;
+&lt;a href = &quot;http://www.sina.com.cn&quot;&gt;新浪2&lt;/a&gt;
+
+&lt;div id = &quot;newslink&quot;&gt;
+    &lt;a href = &quot;http://www.baidu.com&quot; target = &quot;_blank&quot;&gt;新闻链接1&lt;/a&gt;
+    &lt;a href = &quot;http://www.baidu.com&quot;&gt;新闻链接2&lt;/a&gt;
+    &lt;a href = &quot;http://www.baidu.com&quot;&gt;新闻链接3&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3>通过节点的层次关系获取节点对象。</h3>
+<blockquote>
+<ol>
+<li>父节点：parentNode.</li>
+<li>子节点：childNodes.</li>
+<li>兄弟节点：1.上一个兄弟节点previousSibling。2.下一个兄弟节点nextSibling。</li>
+</ol>
+</blockquote>
+<pre><code>&lt;style type = &quot;text/css&quot;&gt;
+div{
+    border:#00ccff 1px solid;
+    width:200px;
+    padding:30px;
+    margin:10px;
+}
+#div_1{
+    background-color:#00ccff;
+}
+#div_2{
+    background-color:#FFccff;
+}
+#div_3{
+    background-color:#cc00ff;
+}
+#div_4{
+    background-color:#00FF00;
+}
+&lt;/style&gt;
+
+&lt;script type = &quot;text/javascript&quot;&gt;
+    //创建并添加节点。在div_1节点中添加一个文本节点。
+    function crtAndAdd1(){
+        //步骤：创建一个文本节点，获取div_1节点，将文本节点添加到div_1节点中。
+        //1.使用document中的createTextNode方法。
+        var oTextNode = document.createTextNode(&quot;这是一个新的文本&quot;);
+        //2.获取div_1节点。
+        var odivNode = document.getElementById(&quot;div_1&quot;);
+        //3.将文本节点添加到div_1节点中。
+        odivNode.appendChild(oTextNode);
+    }
+    //在div_1节点中创建并添加一个按钮节点。
+    function crtAndAdd2(){
+        //1.创建一个按钮节点。
+        var oButNode = document.createElement(&quot;input&quot;);
+        oButNode.type = &quot;button&quot;;
+        oButNode.value = &quot;一个新按钮&quot;;
+        //2.获取div_1节点。
+        var odivNode = document.getElementById(&quot;div_1&quot;);
+        //3.将按钮节点添加到div_1节点中。
+        odivNode.appendChild(oButNode);
+    }//通过另一种方式添加节点。使用了容器型标签中的一个属性。innerHTML。这个属性可以设置html文本。
+    function crtAndAdd3(){
+        //1.获取div_1节点。
+        var odivNode = document.getElementById(&quot;div_1&quot;);
+        odivNode.innerHTML = &quot;&lt;input type = 'button' value = '按钮' /&gt;&quot;;  //添加按钮。
+        odivNode.innerHTML = &quot;&lt;a href = 'http://www.163.com'&gt;超链接&lt;/a&gt;&quot;;  //添加超链接。
+    }
+    //将div_2节点删除。先获取div_2的父节点，然后用父节点的removeChild方法删除。
+    function delNode(){
+        //1.获取div_2节点。
+        var odivNode = document.getElementById(&quot;div_2&quot;);
+        //2.使用div节点的removeChild方法删除。
+        odivNode.parentNode.removeChild(odivNode);  //删除此节点及其包含的内容。
+    }
+    //用div_3节点替换div_1节点。
+    function updateNode(){
+        //获取div_1和div_3节点。使用replaceChild进行替换。
+        var odivNode_1 = document.getElementById(&quot;div_1&quot;);
+        var odivNode_3 = document.getElementById(&quot;div_3&quot;);
+        odivNode_1.parentNode.replaceChild(odivNode_3, odivNode_1);
+    }
+    //需求：希望用div_3替换div_1，并保留div_3节点。
+    function cloneDemo(){
+        var odivNode_1 = document.getElementById(&quot;div_1&quot;);
+        var odivNode_3 = document.getElementById(&quot;div_3&quot;);
+        var oCopyDiv_3 = odivNode_3.cloneNode(true);
+        odivNode_1.parentNode.replaceChild(oCopyDiv_3, odivNode_1);
+    }
+&lt;/script&gt;
+
+&lt;input type = &quot;button&quot; value = &quot;创建并添加节点&quot; onclick = &quot;crtAndAdd3()&quot;/&gt;
+&lt;input type = &quot;button&quot; value = &quot;删除节点&quot; onclick = &quot;delNode()&quot;/&gt;
+&lt;input type = &quot;button&quot; value = &quot;修改节点&quot; onclick = &quot;updateNode()&quot;/&gt;
+&lt;input type = &quot;button&quot; value = &quot;克隆节点&quot; onclick = &quot;cloneDemo()&quot;/&gt;
+&lt;hr /&gt;
+&lt;div id = &quot;div_1&quot;&gt;&lt;/div&gt;
+&lt;div id = &quot;div_2&quot;&gt;two&lt;/div&gt;
+&lt;div id = &quot;div_3&quot;&gt;three&lt;/div&gt;
+&lt;div id = &quot;div_4&quot;&gt;four&lt;/div&gt;
+</code></pre>
+

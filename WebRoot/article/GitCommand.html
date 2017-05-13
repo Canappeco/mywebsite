@@ -1,0 +1,55 @@
+
+<h2>Git命令总结</h2>
+<pre><code>//初始化 git 目录
+$ git init
+
+//添加文件
+$ git add readme.txt
+
+//提交文件并添加说明
+$ git commit -m &quot;hello&quot;
+
+//查看当前状态
+$ git status
+
+//查看文件修改的内容
+$ git diff readme.txt
+
+//查看 git 修改日志
+$ git log
+$ git log --pretty=oneline
+
+//修改 HEAD 指针位置
+$ git reset --hard HEAD^
+//根据 SHA1 修改 HEAD 指针位置
+$ git reset --hard e48d51
+
+//让文件回到最近一次 git commit 或 git add 时的状态。
+$ git checkout -- readme.txt
+
+//关联一个远程库（origin是自定义远程库的名字）
+$ git remote add origin git@githud.com:Kuroku/repo-name.git
+//第一次推送master分支的所有内容
+$ git push -u origin master
+
+//从本地向远程仓库推送最新修改
+$ git push origin master
+
+//创建并切换到dev分支
+$ git checkout -b dev
+
+//查看当前分支
+$ git branch
+
+//切换回master分支
+$ git checkout master
+
+//将dev分支合并到master分支上
+$ git merge dev
+
+//删除dev分支
+$ git branch -d dev
+
+//
+</code></pre>
+

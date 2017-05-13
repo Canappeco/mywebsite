@@ -1,0 +1,124 @@
+
+<h1>CSS选择器</h1>
+<blockquote>
+<p>就是指定CSS要作用的标签，标签的名称就是选择器。
+选择器共有三种：</p>
+<ol>
+<li>html名称选择器，使用的就是html的标签名。</li>
+<li>class选择器，其实使用的是标签中的class属性。</li>
+<li>id选择器，其实使用的是标签中的id属性。</li>
+</ol>
+<p>每一个标签都定义了class属性和id属性。用于对标签进行标识。方便对标签进行操作。多个标签的class属性值可以相同，而id值必须唯一。因为该属性除了给css使用，还可以被js使用。id通常都是为了去标识页面中的一些特定区域。</p>
+</blockquote>
+<pre><code>&lt;style type = &quot;text/css&quot;&gt;
+    div{
+        background-color:#09F;
+        color:#FFF;
+    }
+    div.one{
+        background-color:#FF3;
+        color:#0C0;
+    }
+&lt;/style&gt;
+
+&lt;div&gt;这是一个div区域1&lt;/div&gt;
+&lt;div class = &quot;one&quot;&gt;这是一个div区域2&lt;/div&gt;
+</code></pre>
+
+<blockquote>
+<p>使用class属性来调用定义的属性。可以在<code>&lt;style&gt;</code>中定义多个样式。预定样式之后可以实现动态加载。</p>
+</blockquote>
+<pre><code>.oneplus{
+    background-color:#FF0;
+    color:#F00;
+    }
+</code></pre>
+
+<blockquote>
+<p>这种方式定义以后可以在不同标签中使用该样式。</p>
+<p>同样，可以利用id来进行选择。
+在<code>&lt;style&gt;</code>中定义：</p>
+</blockquote>
+<pre><code>div#two{
+    background-color:#FF0;
+    color:#F00;
+}
+
+&lt;div id = &quot;oneplus&quot;&gt;这是一个div区域2&lt;/div&gt;
+</code></pre>
+
+<blockquote>
+<p>同理，也可以利用另一种定义方法。</p>
+</blockquote>
+<pre><code>#two{
+    background-color:#FF0;
+    color:#F00;
+}
+</code></pre>
+
+<blockquote>
+<p>注意：<strong>优先级:</strong></p>
+<p><strong>标签选择器&lt;类选择器&lt;id选择器&lt;style属性</strong></p>
+</blockquote>
+<h3>还有另外一种：选择器中的选择器。</h3>
+<blockquote>
+<p>在<code>&lt;style&gt;</code>标签中定义：</p>
+</blockquote>
+<pre><code>span a b{
+    background-color:#FF0;
+    color:#F00;
+}
+</code></pre>
+
+<p>表示<code>&lt;span&gt;</code>标签中的<code>&lt;a&gt;</code>标签中的<code>&lt;b&gt;</code>标签。对此标签的样式设置。</p>
+<h3>还有还有另外一种：组合选择器。</h3>
+<blockquote>
+<p>在<code>&lt;style&gt;</code>标签中定义：</p>
+</blockquote>
+<pre><code>.oneplus,div b{
+    background-color:#FF0;
+    color:#F00;
+}
+</code></pre>
+
+<p>表示<code>.oneplus</code>选择器和<code>&lt;div&gt;</code>标签中的<code>&lt;b&gt;</code>标签进行相同样式的定义。</p>
+<h3>还有还有还有另外一种：伪元素选择器。</h3>
+<blockquote>
+<p>伪元素：
+超链接的状态：</p>
+</blockquote>
+<pre><code>1.未访问。
+a:link{
+    background-color:#06F;
+    color:#FFF;
+    text-decoration:none;
+    font-size:20px;
+}
+
+2.鼠标悬停。
+a:hover{
+    background-color:#FFF;
+    color:#F00;
+    font-size:24px;
+}
+
+3.点击效果。
+a.active{
+    background-color:#000;
+    color:#FFF;
+    font-size:36px;
+}
+
+4.访问后效果。
+a.visited{
+    background-color:#FF9;
+    color:#000;
+    text-decoration:line-through
+}
+
+&lt;a href = &quot;http://www.sina.com.cn&quot; target = &quot;_blank&quot;&gt;伪元素选择器演示&lt;/a&gt;
+</code></pre>
+
+<blockquote>
+<p>先定义好四种状态，再在标签中直接调用。</p>
+</blockquote>

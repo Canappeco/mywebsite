@@ -1,0 +1,32 @@
+
+<h1>Apache &amp; Tomcat</h1>
+<blockquote>
+<p>一开始用服务器的时候，我就是用的Tomcat服务器。那个时候我以为Apache只是一个牛逼的公司，而Tomcat就是旗下最出色的输出。因为我在Linux上解压tomcat的压缩包之后出来的文件夹就是/apache/tomcat。最近打算学学php，一开始就要求搭建一个web服务器，而首推的就是Apache服务器。这时我才发现，原来Apache服务器跟tomcat服务器完全就不是一个东西。搜索一波，发现这两个服务器也是有很大的差别的。</p>
+</blockquote>
+<ul>
+<li>Apache是普通服务器，本身只支持html即普通网页，可以通过插件支持php，还可以与Tomcat连通(Apache单向连接Tomcat，就是说通过Apache可以访问Tomcat资源，反之不然)。而Tomcat是一个servlet(jsp也翻译成servlet)容器，处理asp、jsp、php、cgi等动态网页，可以认为是apache的扩展，但是可以独立于apache运行</li>
+</ul>
+<blockquote>
+<p>以上就是最主要的区别。至于其他，apache服务器的稳定性比tomcat要好，能够相当长时间不重启。tomcat功能上可以取代apache，毕竟他就是在apache基础上研发出来的。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>我也是第一次听说可以把这两个服务器整合在一起使用。</p>
+</blockquote>
+<ul>
+<li>apache擅长处理静态html</li>
+<li>tomcat可以处理jsp等servlet内容。</li>
+</ul>
+<blockquote>
+<p>因此，可以这样整合：</p>
+</blockquote>
+<ul>
+<li>如果客户端请求的是静态页面，则只需要Apache服务器响应请求；</li>
+<li>如果客户端请求动态页面，则是Tomcat服务器响应请求，将解析的JSP等网页代码解析后回传给Apache服务器，再经Apache返回给浏览器端。</li>
+</ul>
+<blockquote>
+<p>这是因为jsp是服务器端解释代码的，Tomcat只做动态代码解析，Apache回传解析好的静态代码，Apache+Tomcat这样整合就可以减少Tomcat的服务开销。</p>
+</blockquote>
+<h5>至于具体怎么整合，等以后对服务器进行优化的时候再说吧，先挖个坑。</h5>
+
+

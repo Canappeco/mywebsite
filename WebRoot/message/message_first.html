@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>留言-zmhappy</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+
+		<script src="../res/jquery.min.js"></script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#niming").click(function(){
+					if($("#niming").html()=="昵称"){
+						$("#niming").html("匿名");
+						$("#mingcheng").attr("readonly", "true");
+						$("#mingcheng").attr("value", "匿名用户");
+					}else{
+						$("#niming").html("昵称");
+						$("#mingcheng").removeAttr("readonly");
+						$("#mingcheng").attr("value", "");
+					}
+				});
+			});  
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#mingcheng").keyup(function(){
+					var val = document.getElementById("mingcheng").value;
+					var val2 = document.getElementById("messa").value;
+					if((val != "") && (val2 != "")){
+						$("#fat-btn").removeAttr("disabled");
+					}else{
+						$("#fat-btn").attr("disabled", "disabled");	
+					}
+				});
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#mingcheng").keydown(function(){
+					var val = document.getElementById("mingcheng").value;
+					var val2 = document.getElementById("messa").value;
+					if((val != "") && (val2 != "")){
+						$("#fat-btn").removeAttr("disabled");	
+					}else{
+						$("#fat-btn").attr("disabled", "disabled");					
+				});
+			});
+		</script>
+
+		<script>
+			$(document).ready(function(){
+				$("#messa").keyup(function(){
+					var val = document.getElementById("mingcheng").value;
+					var val2 = document.getElementById("messa").value;
+					if((val != "") && (val2 != "")){
+						$("#fat-btn").removeAttr("disabled");	
+					}else{
+						$("#fat-btn").attr("disabled", "disabled");	
+					}
+				});
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#messa").keydown(function(){
+					var val = document.getElementById("mingcheng").value;
+					var val2 = document.getElementById("messa").value;
+					if((val != "") && (val2 != "")){
+						$("#fat-btn").removeAttr("disabled");	
+					}else{
+						$("#fat-btn").attr("disabled", "disabled");	
+					}
+				});
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function () {
+   				var jqxhr = $.ajax('/mywebsite/GetMessageServlet', {
+			    	dataType: 'json'
+				}).done(function (data) {
+				    var mess = $('#message_get');
+				    $.each(data, function(index, content){
+				   		var ps = document.createElement('div');
+				    	ps.innerHTML = '<span class="glyphicon glyphicon-user" style="font-size:20px">'+' '+content.name+'</span>'+'<br />'
+				    	ps.innerHTML = ps.innerHTML+'<div style="font-size:15px;margin-left:60px;margin-top:20px">'+content.message+'</div><br />'
+				    	ps.innerHTML = ps.innerHTML+'<div class="text-muted" align="right" style="font-size:15px"><i>发表于 '+content.time+'</i></div><br /><hr class="half-rule">';
+						mess.append(ps);
+					}); 
+				}).fail(function (xhr, status) {
+				    alert('失败: ' + xhr.status + ', 原因: ' + status);
+				}).always(function () {
+				});
+	   		});
+	   	</script>
+		
+		
+	</head>
+	<body>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>-->
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		
+		<!-- 导航栏 -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="../index.html">主页</a></li>
+					<li><a href="../article/article_first.html">技术</a></li>
+					<li><a href="../drop/drop_first.html">点滴</a></li>
+					<li><a href="../gomi/gomi_first.html">杂七杂八</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" style="padding-right:20px">
+					<li class="active"><a href="./message_first.html">留言</a></li>
+					<li><a href="../about/about.html">关于</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		
+		<div class="row">
+			<div class="col-sm-8" style="max-width:960px;margin-top:80px;margin-right:-20px;margin-left:60px;">
+				<form role="form" action="/mywebsite/SetMessageServlet" method="post">
+					<div class="form-group">
+						<label for="name">发表留言</label>
+						<div class="input-group">
+				            <a href="#" class="input-group-addon" id="niming">昵称</a>
+				            <input type="text" class="form-control" id="mingcheng" name="name" placeholder="请输入名称">
+				        </div>
+						<textarea class="form-control" rows="6" id="messa" name="message" placeholder="请写下你想说的话吧"></textarea>
+					</div>
+					<div style="text-align:right;">
+						<button type="submit" id="fat-btn" class="btn btn-primary" disabled="disabled">提交</button>
+					</div>
+				</form>
+				
+				<br />
+				
+				<!-- 留言正文 -->
+				<h3>留言</h3>
+				<hr class="half-rule">
+				<div id="message_get" style="margin-left:20px;">
+
+				</div>
+				
+			</div>
+			
+			<div class="col-sm-4">
+			</div>
+		</div>
+		
+		
+		<!-- 底部信息栏 -->
+		<hr class="half-rule">
+		<footer style="background-color:#ddd; padding: 30px 0;margin:0 0 0 0;">
+			<div class="container">
+				<p style="color:black">
+					<a target="_blank" style="color:black" href="http://www.zmhappyer.com">Website</a> - 
+					<a target="_blank" style="color:black" href="https://github.com/Kuroku">GitHub</a> - 
+					<a target="_blank" style="color:black" href="http://weibo.com/2742743667/profile?topnav=1&wvr=6&is_all=1">ZMmmm</a>
+				</p>
+				<p>This page is created by <a target="_blank" style="color:black" href="http://zmhappyer.com">@zmhappy</a>.</p>
+				<p style="color:black">Code licensed Apache.</p>
+			</div>
+		</footer>
+		
+	</body>
+</html>

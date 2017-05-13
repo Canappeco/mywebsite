@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>点滴-zmhappy</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+		
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<style type="text/css">
+			@import url(../css/markdown_css.css);
+		</style>
+		
+		<style type="text/css">
+			@import url(../css/menu_css.css);
+		</style>
+
+		<script src="../res/jquery.min.js"></script>
+		
+		<script>
+			$(function() {
+				var Accordion = function(el, multiple) {
+					this.el = el || {};
+					this.multiple = multiple || false;
+			
+					// Variables privadas
+					var links = this.el.find('.link');
+					// Evento
+					links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+				}
+			
+				Accordion.prototype.dropdown = function(e) {
+					var $el = e.data.el;
+						$this = $(this),
+						$next = $this.next();
+			
+					$next.slideToggle();
+					$this.parent().toggleClass('open');
+			
+					if (!e.data.multiple) {
+						$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+					};
+				}	
+			
+				var accordion = new Accordion($('#accordion'), false);
+			});
+		</script>
+		
+		<script>
+		$(document).ready(function(){
+			$("#name_writefirst").click(function(){
+				$("#zhengwen").load("./write_first.html");
+				$("title").text("写在开始-zmhappyer");
+			})
+		})
+		</script>
+		
+		<script>
+		$(document).ready(function(){
+			$("#name_markdown").click(function(){
+				$("#zhengwen").load("./markdown.html");
+				$("title").text("MarkdownPad-zmhappyer");
+			})
+		})
+		</script>
+		
+		<script>
+		$(document).ready(function(){
+			$("#name_liaoxuef").click(function(){
+				$("#zhengwen").load("./liaoxuef.html");
+				$("title").text("两个不错的网站-zmhappyer");
+			})
+		})
+		</script>
+		
+	</head>
+	<body>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>-->
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		
+		<!-- 导航栏 -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="../index.html">主页</a></li>
+					<li><a href="../article/article_first.html">技术</a></li>
+					<li class="active"><a href="./drop_first.html">点滴</a></li>
+					<li><a href="../gomi/gomi_first.html">杂七杂八</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" style="padding-right:20px">
+					<li><a href="../message/message_first.html">留言</a></li>
+					<li><a href="../about/about.html">关于</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		
+		<div class="row" id="markdown_zhengwen">
+			
+			<div class="col-sm-3" style="margin-top:40px;margin-right:-20px;margin-left:20px;">
+				 <div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" role="complementary" style="margin-left:40px;"> 
+					
+					<ul class="accordion" id="accordion">    <!-- class="nav bs-docs-sidenav" --> 
+						<li style="list-style-type:none;">
+							<a href="#" id="name_writefirst">写在开始</a>
+						</li>
+						
+						<li style="list-style-type:none;">
+							<a href="#" id="name_markdown">MarkdownPad</a>
+						</li>
+							
+						<li style="list-style-type:none;">
+							<a href="#" id="name_liaoxuef">两个不错的网站</a>
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+			
+			<div class="col-sm-9">
+				<div class="container" id="zhengwen" style="max-width:960px;margin-top:40px;margin-right:-20px;margin-left:60px;">
+					<h1>写在开始</h1>
+					<div>
+					这个板块大概就是记录一下平时觉得有趣的东西，或者分享一下好玩的地方或者各种人或事。
+					其实就是技术以外的比较有价值的东西我都会放在这里（其实是我实在想不到这个板块要做什么然后就乱塞东西了），
+					希望各位读者不要介意。<br/>
+					
+					<br/>
+					2016.10.1
+					<br/><br />
+					
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		<!-- 底部信息栏 -->
+		<hr class="half-rule">
+		<footer style="background-color:#ddd; padding: 30px 0;margin:0 0 0 0;">
+			<div class="container">
+				<p style="color:black">
+					<a target="_blank" style="color:black" href="http://www.zmhappy.cn">Website</a> - 
+					<a target="_blank" style="color:black" href="https://github.com/Kuroku">GitHub</a> - 
+					<a target="_blank" style="color:black" href="http://weibo.com/2742743667/profile?topnav=1&wvr=6&is_all=1">ZMmmm</a>
+				</p>
+				<p>This page is created by <a target="_blank" style="color:black" href="http://www.zmhappy.cn">@zmhappy</a>.</p>
+				<p style="color:black">Code licensed Apache.</p>
+			</div>
+		</footer>
+		
+	</body>
+</html>

@@ -1,0 +1,7 @@
+create database mywebsite;
+use mywebsite;
+create table message(
+	name varchar(60),
+	time varchar(100),
+	message varchar(1024)
+)engine=InnoDB DEFAULT CHARSET=utf8;

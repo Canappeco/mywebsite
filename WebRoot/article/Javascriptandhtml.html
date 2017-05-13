@@ -1,0 +1,262 @@
+
+<h1>Javascript</h1>
+<h3>1. javascript与html代码的结合。</h3>
+<blockquote>
+<p>第一种方式：在<code>&lt;script&gt;</code>标签中直接写入js语句。例如：</p>
+</blockquote>
+<pre><code>&lt;script type = &quot;text/javascript&quot;&gt;
+    alert(&quot;hello&quot;);
+&lt;/script&gt;
+</code></pre>
+
+<blockquote>
+<p>第二种方式：将js语句保存为<code>.js</code>文件，然后在<code>&lt;script&gt;</code>标签中用<code>src</code>属性进行导入。例如：</p>
+</blockquote>
+<pre><code>&lt;script type = &quot;text/javascript&quot; src = &quot;demo.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<blockquote>
+<p><strong>注意：如果<code>&lt;script&gt;</code>标签中使用了src属性，那么该标签中封装的js代码不会被执行。所以通常导入js文件都是使用单独的<code>&lt;script&gt;</code>来完成。</strong></p>
+</blockquote>
+<h3>2. 基本语法。</h3>
+<ol>
+<li>
+<p>定义变量：关键字var（弱类型）。</p>
+<pre><code>var x = 3;  //var可以省略，尽量不省略。
+x = &quot;abc&quot;;  //重新赋值为字符串abc。
+alert(&quot;x=&quot;+x);  //该函数将具体的参数通过对话框进行显示。
+</code></pre>
+
+</li>
+<li>
+<p>运算符：算数运算符，赋值运算符，比较运算符，逻辑运算符，位运算符，三元运算符。	</p>
+<pre><code>alert(&quot;12&quot;-1);  //11
+alert(&quot;12&quot;+1);  //121
+alert(true+1);  //2
+</code></pre>
+
+</li>
+<li>
+<p><code>undefined</code>:未定义。是一个常量。</p>
+<pre><code>var x;
+alert(x);   //undefined
+alert(x==undefined);    //true
+</code></pre>
+
+<p>想要获取具体的值的类型，可以通过<code>typeof()</code>来完成。</p>
+<pre><code>alert(typeof(&quot;abc&quot;)=='string');
+alert(typeof(2.5)=='number');
+</code></pre>
+
+</li>
+<li>
+<p>语句：顺序结构，判断结构，选择结构，循环结构，其它语句。</p>
+<pre><code>var x = 3;
+if(x &gt; 4)
+    alert(&quot;4&quot;);
+else if(x &gt; 3)
+    alert(&quot;3&quot;);
+else if(x &gt; 2)
+    alert(&quot;2&quot;);
+else
+    alert(&quot;1&quot;);
+</code></pre>
+
+<p><code>switch</code>语句：</p>
+<pre><code>switch(x){
+    case &quot;1&quot;:
+        alert(&quot;1&quot;);
+        break;
+    case &quot;2&quot;;
+        alert(&quot;2&quot;);
+        break;
+    default:
+        alert(&quot;3&quot;);
+}
+</code></pre>
+
+<p><strong>直接将数据写到当前页面中可以使用<code>document.write();</code></strong>
+<strong><code>println();</code>函数能够在页面中输出并换行。</strong></p>
+</li>
+<li>
+<p>数组。
+第一种定义方式。</p>
+<pre><code>var arr = [];
+var arr = {3,1,5,8};
+alert(typeof(arr)); //对象类型Object
+alert(&quot;len:&quot;+arr.length);   //数组长度。
+</code></pre>
+
+<p>注意：<strong>js数组长度可变，元素的类型可以是任意的</strong>。</p>
+<p>第二种定义方式（使用了javascript中的Array对象来完成）。</p>
+<pre><code>var arr = new Array();  //var arr = [];
+var arr1 = new Array(); //数组定义并长度为5。
+var arr2 = new Array(5,6,7);  //定义一个数组，元素是5，6，7。
+</code></pre>
+
+</li>
+<li>
+<p>函数。定义函数：通过指定的关键字来定义。</p>
+<pre><code>function f(x){
+    return x+1;  //如果没有具体返回值，可以省略return语句。
+}
+//如果调用函数时没有传递参数，则x=undefined
+//函数中有一个数组对传入的参数进行存储。这个数组就是arguments
+//可以直接调用arguments
+</code></pre>
+
+<p>js动态函数：使用的是js中内置的一个对象<code>Function</code></p>
+<pre><code>var add = new Function(&quot;x,y&quot;, &quot;var sum; sum = x+y; return sum;&quot;);
+var he = add(4,8);
+alert(&quot;he+&quot;+he);
+</code></pre>
+
+<p>js匿名函数：通常是函数的简写形式。</p>
+<pre><code>var add = function(a,b){
+    return a+b;
+}
+</code></pre>
+
+</li>
+<li>
+<p>字符串。
+两种方法初始化字符串。</p>
+<pre><code>var x,y;
+x = &quot;abc&quot;;
+y = new String(&quot;abc&quot;);
+</code></pre>
+
+<p><code>String</code>有许多方法：</p>
+<pre><code>str.length;
+str.bold(); //加粗
+str.fontcolor(&quot;red&quot;);   //字体颜色
+str.link(&quot;http://www.163.com&quot;); //将字符串变成超链接
+str.substr(1,3);    //将原数据截断，输出bcd
+str.substring(1,3); //输出bc
+</code></pre>
+
+<p>自定义字符串功能：去除字符串两端的空格。</p>
+<pre><code>function trim(str){
+    var start, end;
+    start = 0;
+    end = str.length-1;
+
+    while(start&lt;=end &amp;&amp; str.charAt(start)){
+        start++;
+    }
+    while(start&lt;=end &amp;&amp; str.charAt(end)){
+        end--;
+    }
+    return str.substring(start, end+1);
+}
+</code></pre>
+
+<p><code>prototype</code>属性:</p>
+<blockquote>
+<p><code>String.prototype</code>：<code>String</code>的原型。
+<strong>原型</strong>：该对象所属的一个原有描述。
+<code>prototype</code>可以获取到这个原型的对象。通过这个对象进行类功能的扩展。</p>
+<p>将上面创建的功能添加到字符串的对象的功能中。</p>
+</blockquote>
+<p>String.prototypr.len = 199;	//给String的原型对象中添加一个属性。名为len，值为199.</p>
+<p>String.prototype.trim = trim;	//将trim()方法添加到String对象的功能中。</p>
+<p>String.prototype.trim = function(){
+	var start, end;
+    start = 0;
+    end = this.length-1;
+    while(start&lt;=end &amp;&amp; this.charAt(start)){
+        start++;
+    }
+    while(start&lt;=end &amp;&amp; this.charAt(end)){
+        end--;
+    }
+    return this.substring(start, end+1);
+}	//或者通过匿名函数添加新的方法。</p>
+</li>
+<li>
+<p>Array对象。</p>
+<pre><code>//创建数组对象。
+var arr = {&quot;abc&quot;,&quot;nba&quot;,&quot;ha&quot;,123};
+var arr = {1,2,3};
+arr.concat(&quot;mm&quot;,arr2);  //将arr和arr2和&quot;mm&quot;连接起来。返回新数组。
+arr.join(&quot;-&quot;);  //将数组元素用&quot;-&quot;隔开。
+arr.pop();  //移除数组中最后一个元素并返回。
+arr.push(&quot;a&quot;);  //将元素添加进数组中并返回长度。如果参数为另一个数组，则这整个数组作为一个新元素。
+arr.reverse();  //将数组反转并返回。
+arr.shift();    //删除第一个元并返回。
+arr.unshift();
+</code></pre>
+
+</li>
+<li>
+<p>Date对象。</p>
+<pre><code>var date = new Date();
+alert(date);    // Tue Apr 12 2016 11:44:54 GMT+0800
+alert(date.toLocaleString());   // 2016/4/12 上午11:50:22
+alert(date.toLocaleDateString());   // /2016/4/12
+
+var year = date.getFullYear();
+var month = date.getMonth();    //从0开始，0代表一月
+var day = date.getDate();
+var week = date.getDay();   //星期几，0代表星期日
+
+//日期对象和毫秒值之间的转换。
+var date2 = new Date();
+//通过日期对象获取毫秒值。
+var time = date2.getTime();
+//将毫秒值转成日期对象。
+var date3 = new Date(time);
+//或者：
+var date 4 = setTime(time);
+</code></pre>
+
+</li>
+<li>
+<p>js自定义对象。</p>
+<blockquote>
+<p>如果想要自定义对象，应该先对对象进行描述。js是基于对象而不是面向对象，不具备描述事物的能力。在js中，可以用<strong>函数</strong>来模拟面向对象中的描述。</p>
+</blockquote>
+<pre><code>//用js来描述人。相当于构造器。
+function Person(){
+    alert(&quot;person run&quot;);
+}
+
+//通过描述进行对象的建立。
+var p = new Person();
+//动态给p对象添加属性，直接使用p.属性名即可。
+p.name = &quot;zhangsan&quot;;
+p.age = 20;
+//如果定义的p对象的属性赋值为一个函数，即是给p对象添加一个方法。
+p.show = function(){
+    alert(&quot;show:&quot;+this.name+&quot;:&quot;+this.age);
+}
+p.show();   //调用方法。
+
+
+//另一种方法：
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+    this.setName = function(name){
+        this.name = name;
+    }
+    this.getName = function(){
+        return this.name;
+    }
+}
+var p = new Person(&quot;zhangsan&quot;, 20); //调用方法。
+p.setName(&quot;Peter&quot;);
+p.getName();
+
+
+var pp = {
+    &quot;name&quot;:&quot;Tom&quot;, &quot;age&quot;:38;
+    &quot;getName&quot;:function(){
+        return this.getName();
+    }
+}
+alert(pp{&quot;age&quot;});   //直接调用。
+</code></pre>
+
+</li>
+</ol>

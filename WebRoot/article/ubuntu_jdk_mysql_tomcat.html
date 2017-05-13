@@ -1,0 +1,124 @@
+
+<h1>ubuntu搭建jdk+mysql+tomcat环境</h1>
+<hr />
+<h2>搭建jdk环境</h2>
+<ol>
+<li>
+<p>首先到官网上下载jdk-7u7-linux-x64.tar.gz</p>
+</li>
+<li>
+<p>将jdk-7u7-linux-x64.tar.gz拷贝到/usr/lib/jdk/目录下面，这里如果没有jdk文件夹，则创建该文件夹,命令:</p>
+<pre><code>sudo mkdir jdk  //创建文件夹jdk
+
+sudo cp -r  ~/download/jdk-7u7-linux-x64.tar.gz   /usr/lib/jdk/
+//把下载的文件拷贝到心创建的目录下面
+
+sudo tar -zxvf jdk-7u7-linux-x64.tar.gz     //解压缩文件
+</code></pre>
+
+</li>
+<li>
+<p>设置环境变量，用vim打开/etc/profile文件  //注意sever版本下没有图形界面，gedit无法使用</p>
+<pre><code>sudo vim /etc/profile
+</code></pre>
+
+<blockquote>
+<p>在文件的最后面增加：</p>
+</blockquote>
+<pre><code>export JAVA_HOME=/usr/lib/jdk/jdk1.7.0_07
+
+export JRE_HOME=/usr/lib/jdk/jdk1.7.0_07/jre
+
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH 
+
+export CLASSPATH=$CLASSPATH:.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+</code></pre>
+
+<blockquote>
+<p>关闭文件</p>
+</blockquote>
+</li>
+<li>
+<p>系统默认的jdk修改过来</p>
+<pre><code>sudo update-alternatives --install /usr/bin/java java /usr/lib/jdk/jdk1.7.0_07/bin/java 300 
+
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jdk/jdk1.7.0_07/bin/javac 300 
+
+sudo update-alternatives --config java 
+
+sudo update-alternatives --config javac
+</code></pre>
+
+</li>
+<li>
+<p>检测，输入<code>java -version</code></p>
+</li>
+</ol>
+<hr />
+<h2>安装mysql</h2>
+<blockquote>
+<p>ubuntu上安装mysql非常简单只需要几条命令就可以完成。</p>
+</blockquote>
+<pre><code>sudo apt-get install mysql-server
+
+apt-get isntall mysql-client
+
+sudo apt-get install libmysqlclient-dev
+</code></pre>
+
+<blockquote>
+<p>安装过程中会提示设置密码什么的，注意设置了不要忘了，安装完成之后可以使用如下命令来检查是否安装成功：</p>
+</blockquote>
+<pre><code>sudo netstat -tap | grep mysql
+</code></pre>
+
+<blockquote>
+<p>通过上述命令检查之后，如果看到有<code>mysql</code>的<code>socket</code>处于 <code>listen</code>状态则表示安装成功。</p>
+<p>登陆mysql数据库可以通过如下命令：</p>
+</blockquote>
+<pre><code>mysql -u root -p 
+</code></pre>
+
+<hr />
+<h2>安装tomcat</h2>
+<ol>
+<li>
+<p>下载apache-tomcat-7.0.70并解压到目标目录中。</p>
+<pre><code>tar -zxvf apache-tomcat-7.0.52.tar.gz
+</code></pre>
+
+</li>
+<li>
+<p>设置环境变量</p>
+<pre><code>sudo vim /etc/profile
+</code></pre>
+
+<blockquote>
+<p>最下方加入：</p>
+</blockquote>
+<pre><code>#set tomcat environment
+CATALINA_HOME=/usr/local/tomcat7
+export CATALINA_HOME
+</code></pre>
+
+</li>
+<li>
+<p>进入tomcat7文件夹(<code>/bin</code>)：</p>
+<pre><code>~$ cd /usr/local/tomcat7
+</code></pre>
+
+<blockquote>
+<p>编辑<code>catalina.sh</code>文件 ：</p>
+</blockquote>
+<pre><code>~$ sudo gedit bin/catalina.sh
+</code></pre>
+
+<blockquote>
+<p>在文档末尾添加：</p>
+</blockquote>
+<pre><code>CATALINA_HOME=/usr/local/tomcat7
+JAVA_HOME=/usr/local/java/jdk1.7.0_25
+</code></pre>
+
+</li>
+</ol>

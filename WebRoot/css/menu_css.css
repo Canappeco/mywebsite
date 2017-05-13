@@ -1,0 +1,123 @@
+.accordion {
+ 	width: 100%;
+ 	max-width: 250px;
+ 	margin: 30px auto 20px;
+ 	background: #FFF;
+ 	-webkit-border-radius: 4px;
+ 	-moz-border-radius: 4px;
+ 	border-radius: 4px;
+ }
+
+.accordion .link {
+	cursor: pointer;
+	display: block;
+	padding: 10px 0px 10px 15px;
+	color: #757575;
+	font-size: 14px;
+	font-weight: 500;
+	border-bottom: 1px solid #CCC;
+	position: relative;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+.accordion li:{
+	border-bottom: 1px solid #CCC;
+ 	list-style-type:none;
+ 	margin: 0px;
+}
+
+ .accordion li a {
+ 	text-decoration:none;
+ 	list-style-type:none;
+ 	cursor: pointer;
+	display: block;
+	padding: 10px 0px 10px 15px;
+	color: #757575;
+	font-size: 14px;
+	font-weight: 500;
+	border-bottom: 1px solid #CCC;
+	position: relative;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+ }
+
+.accordion li:last-child .link {
+	border-bottom: 0;
+}
+
+.accordion li i {
+	position: absolute;
+	top: 13px;
+	left: 12px;
+	font-size: 18px;
+	color: #595959;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+.accordion li i.fa-chevron-down {
+	right: 12px;
+	left: auto;
+	font-size: 16px;
+}
+
+.accordion li.open .link {
+	color: #6f5499;
+}
+
+.accordion li.open i {
+	color: #6f5499;
+}
+.accordion li.open i.fa-chevron-down {
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.accordion li a:hover {
+	background: #6f5499;
+	color: #FFF;
+}
+
+.accordion li .link:hover {
+	background: #6f5499;
+	color: #FFF;
+}
+
+/**
+ * Submenu
+ -----------------------------*/
+ .submenu {
+ 	display: none;
+ 	background: #fff;
+ 	font-size: 14px;
+ 	margin: 0px;
+ }
+
+ .submenu li {
+ 	border-bottom: 1px solid #CCC;
+ 	list-style-type:none;
+ 	margin: 0px;
+ }
+
+ .submenu a {
+ 	display: block;
+ 	text-decoration: none;
+ 	color: #757575;
+ 	padding: 12px;
+ 	padding-left: 42px;
+ 	-webkit-transition: all 0.25s ease;
+ 	-o-transition: all 0.25s ease;
+ 	transition: all 0.25s ease;
+ }
+
+ .submenu a:hover {
+ 	background: #6f5499;
+ 	color: #FFF;
+ }
+ 

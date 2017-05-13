@@ -1,0 +1,78 @@
+
+<h1>总结：关于这次上线的一些想法</h1>
+<blockquote>
+<p>前端使用了<code>html5</code>+<code>css3</code>+<code>JS</code>（<code>jQuery</code>+<code>ajax</code>)，后台使用了<code>MVC</code>+<code>JDBC</code>，服务器搭建使用了<code>JDK</code>+<code>MYSQL</code>+<code>TOMCAT</code>的套路。为了界面好看点，能跟上潮流，网站框架用了<code>Bootstrap</code>提供的一些组件。</p>
+</blockquote>
+<hr />
+<h3>关于遇到的问题和一些解决的办法。</h3>
+<ol>
+<li>
+<p>本来是只想做一个单纯的没有互动的网站的，后来觉得不行就加了留言的界面。没办法，JS本身不能对文件进行修改，所以后台就变得必要起来。所以我把项目搬上了MyEclipse。其实之前也没有想过用ajax进行数据的传输，因为我之前做我们组的app时数据传输完全就是直接构造网站url（在域名后面跟?name=zm&amp;age=18)。这次写网站想着试一下ajax，没想到真的能用，也是很感动。</p>
+</li>
+<li>
+<p>关于后台的搭建，由于采用的MVC模式，将整个连接数据库的过程都抽象成一个对象，连接过程如下：</p>
+<pre><code>private static String driver = null;
+private static String url = null;
+private static String username = null;
+private static String password = null;
+
+static{
+    try{
+        //读取db.properties文件中的数据库连接信息
+        InputStream in = JdbcUtils.class.getClassLoader().getResourceAsStream(&quot;db.properties&quot;);
+        Properties prop = new Properties();
+        prop.load(in);
+
+        //获取数据库连接驱动
+        driver = prop.getProperty(&quot;driver&quot;);
+        //获取数据库连接URL地址
+        url = prop.getProperty(&quot;url&quot;);
+        //获取数据库连接用户名
+        username = prop.getProperty(&quot;username&quot;);
+        //获取数据库连接密码
+        password = prop.getProperty(&quot;password&quot;);
+        //加载数据库驱动
+        Class.forName(driver);
+
+    }catch (Exception e) {
+        throw new ExceptionInInitializerError(e);
+    }
+}
+</code></pre>
+
+<p><code>db.properties</code>文件中记录了数据库名称，连接url，用户名称和密码。至于往数据库添加数据什么的，就是sql语句的基础了。</p>
+</li>
+<li>
+<p>还是想说说ajax连接的问题，毕竟是第一次做。代码如下：</p>
+<pre><code>&lt;script&gt;
+    $(document).ready(function () {
+        var jqxhr = $.ajax('/mywebsite/GetMessageServlet', {
+            dataType: 'json'
+        }).done(function (data) {
+            var mess = $('#message_get');
+            $.each(data, function(index, content){
+                var ps = document.createElement('div');
+                ps.innerHTML = ···
+                mess.append(ps);
+            }); 
+        }).fail(function (xhr, status) {
+            alert('失败: ' + xhr.status + ', 原因: ' + status);
+        }).always(function () {
+        });
+    });
+&lt;script&gt;
+</code></pre>
+
+<p>代码很乱，总而言之就是向servlet发送请求，获得数据，修改dom节点。传输数据用的是json格式，方便解析。</p>
+</li>
+<li>
+<p>关于服务器的搭建。不得不说，国内服务器的价格真的是很贵，单核1G内存1M带宽要65元/月，这个配置国外搬瓦工5刀/年，就是稳定性差。还好腾讯云对学生有点良心，每月发放代金券，折合下来每月只要1元。稳定性不错，偶尔会抽风，我买了三个月来抽了两次。反正现在能跑就行，以后再换一个好一点的服务器。</p>
+</li>
+<li>
+<p>这次上线还是有点着急了。发布之后才发现自己网页对小屏设备的支持不是很好，各种排版错误，组件丢失。我也纳闷明明Bootstrap说自己对移动设备支持很好的，怎么我用就不行呢。争取下次版本更新把这个问题弄好。对了网站更新的话争取每周更新一次。至于更新日志我大概会写在关于界面中。</p>
+</li>
+</ol>
+<blockquote>
+<p>总而言之还是希望大家喜欢这个网站。</p>
+</blockquote>
+<p align="right">2016.10.7</p>

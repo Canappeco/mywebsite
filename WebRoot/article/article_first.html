@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1.2更新日志-zmhappy</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	
+		<style type="text/css">
+			@import url(../css/markdown_css.css);
+		</style>
+		
+		<style type="text/css">
+			@import url(../css/menu_css.css);
+		</style>
+		
+		<script src="../res/jquery.min.js"></script>
+		
+		<script>
+			$(function() {
+				var Accordion = function(el, multiple) {
+					this.el = el || {};
+					this.multiple = multiple || false;
+			
+					// Variables privadas
+					var links = this.el.find('.link');
+					// Evento
+					links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+				}
+			
+				Accordion.prototype.dropdown = function(e) {
+					var $el = e.data.el;
+						$this = $(this),
+						$next = $this.next();
+			
+					$next.slideToggle();
+					$this.parent().toggleClass('open');
+			
+					if (!e.data.multiple) {
+						$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+					};
+				}	
+			
+				var accordion = new Accordion($('#accordion'), false);
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#back-to-top").hide();
+				$("#back-to-top-word").hide();
+			})
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$(window).scroll(function(){
+					if($(window).scrollTop()>100){
+						$("#back-to-top").fadeIn(700);
+					}else{
+						$("#back-to-top").fadeOut(700);
+					}
+				})
+			})
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#back-to-top").mouseover(function(){
+					$("#back-to-top-word").fadeIn(700)
+				})
+			})
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#back-to-top").mouseout(function(){
+					$("#back-to-top-word").fadeOut(700)
+				})
+			})
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$("#name_ajax").click(function(){
+					$("#zhengwen").load("./ajax.html");
+					$("title").text("ajax-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_csschoose").click(function(){
+					$("#zhengwen").load("./csschoose.html");
+					$("title").text("css选择器-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_DOMjiexi").click(function(){
+					$("#zhengwen").load("./DOMjiexi.html");
+					$("title").text("DOM解析-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_writefirst").click(function(){
+					$("#zhengwen").load("./writefirst.html");
+					$("title").text("写在开始-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_Javascriptandhtml").click(function(){
+					$("#zhengwen").load("./Javascriptandhtml.html");
+					$("title").text("Javascript与html结合&基本语法-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_dairy_1_0").click(function(){
+					$("#zhengwen").load("./conclusion1_0.html");
+					$("title").text("1.0总结-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_ubuntu_jdk").click(function(){
+					$("#zhengwen").load("./ubuntu_jdk_mysql_tomcat.html");
+					$("title").text("ubuntu搭建jdk+mysql+tomcat环境-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_dairy_1_1").click(function(){
+					$("#zhengwen").load("./update1_1.html");
+					$("title").text("1.1更新日志-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_ApacheAndTomcat").click(function(){
+					$("#zhengwen").load("./ApacheAndTomcat.html");
+					$("title").text("Apache和Tomcat联系与区别-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_GitCommand").click(function(){
+					$("#zhengwen").load("./GitCommand.html");
+					$("title").text("Git命令总结-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_maven").click(function(){
+					$("#zhengwen").load("./maven.html");
+					$("title").text("Maven入门-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_redis").click(function(){
+					$("#zhengwen").load("./redis.html");
+					$("title").text("Redis-zmhappyer");
+				})
+			})
+		</script>
+		<script>
+			$(document).ready(function(){
+				$("#name_dairy_1_2").click(function(){
+					$("#zhengwen").load("./update1_2.html");
+					$("title").text("1.2更新日志-zmhappyer");
+				})
+			})
+		</script>
+		
+	</head>
+	
+	<body>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>-->
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		
+		<!-- 导航栏 -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="../index.html">主页</a></li>
+					<li class="active"><a href="./article_first.html">技术</a></li>
+					<li><a href="../drop/drop_first.html">点滴</a></li>
+					<li><a href="../gomi/gomi_first.html">杂七杂八</a></li>
+					
+				</ul>
+				<ul class="nav navbar-nav navbar-right" style="padding-right:20px">
+					<li><a href="../message/message_first.html">留言</a></li>
+					<li><a href="../about/about.html">关于</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="row" id="markdown_zhengwen">
+		
+			<div class="col-sm-3" style="max-width:960px;margin-top:40px;margin-right:-20px;margin-left:20px;">
+				<div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" role="complementary">
+					<ul class="accordion" id="accordion">
+						<li style="list-style-type:none;">
+							<a href="#" id="name_writefirst">写在开始</a>
+						</li>
+					
+						<li style="list-style-type:none;">
+							<div class="link" style="border-bottom: 1px solid #CCC;">JavaWeb<i class="fa fa-chevron-down"></i></div>
+							<ul class="submenu">
+								<a href="#" id="name_ajax">ajax</a>
+								<a href="#" id="name_csschoose">css选择器</a>
+								<a href="#" id="name_DOMjiexi">DOM解析</a>
+								<a href="#" id="name_Javascriptandhtml">Javascript与html结合&基本语法</a>
+							</ul>
+						</li>
+						
+						<li style="list-style-type:none;">
+							<div class="link" style="border-bottom: 1px solid #CCC;">服务器与Linux<i class="fa fa-chevron-down"></i></div>
+							<ul class="submenu">
+								<li><a href="#" id="name_ubuntu_jdk">ubuntu搭建服务器环境</a></li>
+								<li><a href="#" id="name_ApacheAndTomcat">Apache和Tomcat联系与区别</a></li>
+							</ul>
+						</li>
+						
+						<li style="list-style-type:none;">
+							<div class="link" style="border-bottom: 1px solid #CCC;">版本更新日志<i class="fa fa-chevron-down"></i></div>
+							<ul class="submenu">
+								<li><a href="#" id="name_dairy_1_2">1.2更新日志</a></li>
+								<li><a href="#" id="name_dairy_1_1">1.1更新日志</a></li>
+								<li><a href="#" id="name_dairy_1_0">1.0总结</a></li>
+							</ul>
+						</li>
+						
+						<li style="list-style-type:none;">
+							<div class="link" style="border-bottom: 1px solid #CCC;">其他<i class="fa fa-chevron-down"></i></div>
+							<ul class="submenu">
+								<li><a href="#" id="name_GitCommand">Git命令总结</a></li>
+								<li><a href="#" id="name_maven">Maven入门</a></li>
+								<li><a href="#" id="name_redis">Redis</a></li>
+							</ul>
+						</li>
+					</ul>
+					<!-- 返回顶部 -->
+					<a id="back-to-top" href="#top" style="position:fixed;right:60px;bottom:60px;font-size:40px;">
+						<span class="glyphicon glyphicon-arrow-up"></span>
+					</a>
+					<a id="back-to-top-word" href="#top" style="position:fixed;right:55px;bottom:50px;font-size:6px;">返回顶部
+					</a>
+				</div>
+			</div>
+		
+			<div class="col-sm-9">
+				<div class="container" id="zhengwen" style="max-width:960px;margin-top:40px;margin-right:-20px;margin-left:60px;">
+
+					<h2>版本1.2更新（ ？）</h2>
+					<blockquote>
+					<p>我都不好意思说这是更新了，距离上一次更新已经将近半年。。。下次更新也遥遥无期，这次只是心血来潮而已。最近忙着纠结读研还是工作，又想着企业实习又想着实验室实习，感觉一步走错可能就无法回头了。不管啦，先活在当下好了。对了，最近学了django，可能以后会重新把这个网站搭一次。</p>
+					</blockquote>
+					<p>嘛，学（lan）业（ai）繁（wan）忙（qi），可以理解。</p>
+					<blockquote>
+					<p>这次更新也只是更新了几篇文章而已，这段时间做的都是比较具体的东西， 花时间但是没有什么理论的创新，也就无从谈起。</p>
+					<p>具体的可能会放到以后来说。</p>
+					</blockquote>
+
+				</div>
+			</div>
+		
+		</div>
+		
+		<hr class="half-rule">
+
+		<footer style="background-color:#ddd; padding: 30px 0;margin:0 0 0 0;">
+			<div class="container">
+				<p style="color:black">
+					<a target="_blank" style="color:black" href="http://www.zmhappy.cn">Website</a> - 
+					<a target="_blank" style="color:black" href="https://github.com/Kuroku">GitHub</a> - 
+					<a target="_blank" style="color:black" href="http://weibo.com/2742743667/profile?topnav=1&wvr=6&is_all=1">ZMmmm</a>
+				</p>
+				<p>This page is created by <a target="_blank" style="color:black" href="http://www.zmhappy.cn">@zmhappy</a>.</p>
+				<p style="color:black">Code licensed Apache.</p>
+			</div>
+		</footer>
+
+	</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -1,0 +1,130 @@
+<h1>AJAX</h1>
+<h3>XMLHttpRequest</h3>
+<ul>
+<li>
+<p>创建<code>XMLHttpRequest</code>对象</p>
+<pre><code>variable = new XMLHttpRequest();
+</code></pre>
+
+<blockquote>
+<p>IE5和IE6使用ActiveX对象：</p>
+</blockquote>
+<pre><code>variable=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+</code></pre>
+
+<blockquote>
+<p>为了应对所有的浏览器（包括IE5和IE6）使用下面代码：</p>
+</blockquote>
+<pre><code>var xmlhttp;
+if (window.XMLHttpRequest){
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+}
+else{
+    // code for IE6, IE5
+    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+}
+</code></pre>
+
+</li>
+<li>
+<p><code>XMLHttpRequest</code>向服务器发送请求</p>
+<blockquote>
+<p>通过GET请求发送信息：</p>
+</blockquote>
+<pre><code>//向URL添加一个唯一的ID能够避免得到缓存结果
+xmlhttp.open(&quot;GET&quot;,&quot;demo_get2.asp?fname=Bill&amp;lname=Gates&quot;+&quot;&amp;t=Math.random()&quot;,true);
+xmlhttp.send();
+</code></pre>
+
+<blockquote>
+<p>通过POST请求发送信息：</p>
+</blockquote>
+<pre><code>//如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头。然后在 send() 方法中规定您希望发送的数据：
+xmlhttp.open(&quot;POST&quot;,&quot;ajax_test.asp&quot;,true);
+xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+xmlhttp.send(&quot;fname=Bill&amp;lname=Gates&quot;);
+</code></pre>
+
+</li>
+<li>
+<p><code>open(String request, String url, boolean async);</code></p>
+</li>
+<li>
+<p><code>url</code> - 服务器上的文件名称</p>
+<blockquote>
+<p><code>url</code> - 服务器上的文件open() 方法的 <code>url</code> 参数是服务器上文件的地址：</p>
+</blockquote>
+<pre><code>xmlhttp.open(&quot;GET&quot;,&quot;ajax_test.asp&quot;,true);
+</code></pre>
+
+<blockquote>
+<p>该文件可以是任何类型的文件，比如 <code>.txt</code> 和 <code>.xml</code>，或者服务器脚本文件，比如 <code>.asp</code> 和 <code>.php</code> （在传回响应之前，能够在服务器上执行任务）。</p>
+</blockquote>
+</li>
+<li>
+<p><code>async</code>设置为<code>true</code>：设置为异步请求。</p>
+<blockquote>
+<p>当使用 <code>async=true</code> 时，请规定在响应处于 <code>onreadystatechange</code> 事件中的就绪状态时执行的函数：</p>
+</blockquote>
+<pre><code>xmlhttp.onreadystatechange=function(){
+    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200){
+        document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+    }
+}
+xmlhttp.open(&quot;GET&quot;,&quot;test1.txt&quot;,true);
+xmlhttp.send();
+</code></pre>
+
+<blockquote>
+<p>当您使用 <code>async=false</code> 时，请不要编写 <code>onreadystatechange</code> 函数 - 把代码放到 <code>send()</code> 语句后面即可：</p>
+</blockquote>
+<pre><code>xmlhttp.open(&quot;GET&quot;,&quot;test1.txt&quot;,false);
+xmlhttp.send();
+document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+</code></pre>
+
+</li>
+<li>
+<p>获得来自服务器的相应，可以使用 <code>XMLHttpRequest</code> 对象的 <code>responseText</code> 或 <code>responseXML</code> 属性。</p>
+<pre><code>//responseText属性返回字符串
+document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
+
+//responseXML属性返回XML对象，并进行解析
+xmlDoc=xmlhttp.responseXML;
+txt=&quot;&quot;;
+x=xmlDoc.getElementsByTagName(&quot;ARTIST&quot;);
+for (i=0;i&lt;x.length;i++){
+    txt=txt + x[i].childNodes[0].nodeValue + &quot;&lt;br /&gt;&quot;;
+}
+document.getElementById(&quot;myDiv&quot;).innerHTML=txt;
+</code></pre>
+
+</li>
+<li>
+<p><code>onreadystatechange</code>事件</p>
+</li>
+</ul>
+<blockquote>
+<p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</p>
+<p>每当 readyState 改变时，就会触发 onreadystatechange 事件。</p>
+<p>readyState 属性存有 XMLHttpRequest 的状态信息。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><code>readyState</code>:存有 XMLHttpRequest 的状态，从 0 到 4 发生变化。</p>
+<ul>
+<li>0：请求未初始化</li>
+<li>1：服务器连接已建立</li>
+<li>2：请求已接收</li>
+<li>3：请求处理中</li>
+<li>4：请求已完成，且响应已就绪</li>
+</ul>
+<p><code>state</code>: </p>
+<ul>
+<li>200:&quot;OK&quot;    
+</li>
+<li>404:未找到页面</li>
+</ul>
+</blockquote>
+

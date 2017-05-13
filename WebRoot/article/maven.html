@@ -1,0 +1,77 @@
+
+<h1>MAVEN</h1>
+<h3>maven目录结构</h3>
+<pre><code>src
+    -main
+        -java
+            -package
+    -test
+        -java
+            -package
+    resources
+</code></pre>
+
+<h3>maven常用命令</h3>
+<pre><code>mvn -v 查看maven版本
+    compile 编译
+    test 测试
+    package 打包
+    clean 删除target
+    install 安装jar包到本地仓库中
+
+创建目录的两种方式：
+1.archetype:generate 按照提示进行选择
+2.archetype:generate -DgroupId=组织名，公司网址的反写+项目名
+    -DartifactId=项目名-模块名
+    -Dversion=版本号
+    -Dpackage=代码所存在的包名
+</code></pre>
+
+<h3>坐标和仓库</h3>
+<h4>更改仓库路径</h4>
+<h3>maven生命周期：</h3>
+<ol>
+<li>clean 清理项目</li>
+<li>default 构建项目</li>
+<li>site 生成项目站点</li>
+</ol>
+<h3>pom解析</h3>
+<pre><code>&lt;modelVersion&gt;指定当前pom的版本
+&lt;groupId&gt;反写的公司网址+项目名
+&lt;artifactId&gt;项目名+模块名
+&lt;version&gt;版本号，第一个0表示大版本号，第二个0表示分支版本号，第三个0表示小版本号。
+snapshot快照 alpha内部测试 beta公测 Release稳定版本 GA正式发布
+&lt;packaging&gt;打包方式，默认是jar，还可以是war zip pom
+&lt;name&gt;项目描述名
+&lt;url&gt;项目地址
+&lt;description&gt;项目描述
+&lt;developers&gt;开发人员列表
+&lt;licenses&gt;许可证信息
+&lt;organization&gt;组织信息
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;
+        &lt;artifactId&gt;
+        &lt;version&gt;
+        &lt;type&gt;
+        &lt;scope&gt;依赖范围，只在什么范围内有用
+        &lt;optional&gt;true或false，用来设置依赖是否可选，默认为false
+        &lt;exclusions&gt;
+            &lt;exclusion&gt;排除依赖传递列表
+
+&lt;dependencyManagerment&gt;依赖管理
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+
+&lt;build&gt;
+    &lt;plugins&gt;插件列表
+        &lt;plugin&gt;
+            &lt;groupId&gt;
+            &lt;artifactId&gt;
+            &lt;version&gt;
+
+&lt;parent&gt;子模块对父模块的继承
+&lt;modules&gt;指定一起编译
+</code></pre>
+
