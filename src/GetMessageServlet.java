@@ -31,6 +31,7 @@ public class GetMessageServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 //		OutputStream out = response.getOutputStream();
+//
 		
 		UserDaoImpl userdao = new UserDaoImpl();
 		
